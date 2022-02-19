@@ -36,10 +36,16 @@ namespace TodoListAPI
             });
             services.AddControllers();
 
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder => builder.AllowAnyOrigin());
+            });
+
             services.AddDbContext<ApplicationContext>(options =>
             options.UseMySql(Configuration.GetConnectionString("ApplicationContext"),
                  builder => builder.MigrationsAssembly("todolist")));
-
+            
 
             services.AddTransient<ITarefaRepository, TarefaRepository>();
             services.AddTransient<ITarefaService, TarefaService>();
@@ -59,10 +65,13 @@ namespace TodoListAPI
             });
 
             app.UseHttpsRedirection();
+
             app.UseRouting();
+
+            app.UseCors();
+
             app.UseAuthorization();
-
-
+            
 
             app.UseEndpoints(endpoints =>
             {

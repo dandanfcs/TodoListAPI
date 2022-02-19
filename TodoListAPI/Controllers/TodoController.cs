@@ -3,13 +3,16 @@ using Nancy.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using TodoListAPI.Models;
 using TodoListAPI.Repository.Interface;
 using TodoListAPI.Services;
+using System.Web.Http.Cors;
 
 namespace TodoListAPI.Controllers
 {
+    [EnableCors(origins: "https://localhost:44360/Todo", headers: "*", methods: "*")]
     [ApiController]
     [Route("[controller]")]
     public class TodoController : Controller
@@ -34,7 +37,6 @@ namespace TodoListAPI.Controllers
             var teste = "aaa";
 
         }
-
 
         [HttpPost]
         public void AdicionarTarefa(Tarefa tarefa)
