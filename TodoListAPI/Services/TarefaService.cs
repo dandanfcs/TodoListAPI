@@ -21,6 +21,11 @@ namespace TodoListAPI.Services
             _tarefaRepository.AdicionarTarefa(tarefa);
         }
 
+        public void FinalizarTarefa(int id)
+        {
+            _tarefaRepository.FinalizarTarefa(id);
+        }
+
         public List<Tarefa> ObterTodasTarefas()
         {
           return _tarefaRepository.ObterTodasTarefas();

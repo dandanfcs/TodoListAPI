@@ -41,7 +41,7 @@ namespace TodoListAPI
             services.AddDbContext<ApplicationContext>(options =>
             options.UseMySql(Configuration.GetConnectionString("ApplicationContext"),
                  builder => builder.MigrationsAssembly("todolist")));
-            
+
 
             services.AddTransient<ITarefaRepository, TarefaRepository>();
             services.AddTransient<ITarefaService, TarefaService>();
@@ -66,14 +66,15 @@ namespace TodoListAPI
 
             app.UseRouting();
 
-            app.UseCors(opt => {
+            app.UseCors(opt =>
+            {
                 opt.WithOrigins(urlOrigin);
                 opt.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
-               
-                });
+
+            });
 
             app.UseAuthorization();
-            
+
 
             app.UseEndpoints(endpoints =>
             {

@@ -10,5 +10,6 @@ namespace TodoListAPI.Services
     {
         void AdicionarTarefa(Tarefa tarefa);
         List<Tarefa> ObterTodasTarefas();
+        void FinalizarTarefa(int id);
     }
 }

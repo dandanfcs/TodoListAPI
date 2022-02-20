@@ -11,9 +11,7 @@ using TodoListAPI.Services;
 using System.Web.Http.Cors;
 
 namespace TodoListAPI.Controllers
-{
-    [EnableCors(origins: "https://localhost:44360/Todo", headers: "*", methods: "get,post")]
-   
+{   
     [ApiController]
     [Route("[controller]")]
     public class TodoController : Controller
@@ -32,11 +30,10 @@ namespace TodoListAPI.Controllers
             return tarefas;
         }
 
-        [HttpGet("{id}")]
+        [HttpDelete("deletetask/{id}")]
         public void FinalizarTarefa(int id)
         {
-            var teste = "aaa";
-
+            _tarefaService.FinalizarTarefa(id);
         }
 
         [HttpPost("addtask")]

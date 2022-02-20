@@ -22,7 +22,9 @@ namespace TodoListAPI.Repository
 
         public void FinalizarTarefa(int id)
         {
-            throw new NotImplementedException();
+            var obj = dbSet.Find(id);
+            dbSet.Remove(obj);
+            context.SaveChanges();
         }
 
         public List<Tarefa> ObterTodasTarefas()
