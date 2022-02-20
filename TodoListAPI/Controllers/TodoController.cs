@@ -12,7 +12,8 @@ using System.Web.Http.Cors;
 
 namespace TodoListAPI.Controllers
 {
-    [EnableCors(origins: "https://localhost:44360/Todo", headers: "*", methods: "*")]
+    [EnableCors(origins: "https://localhost:44360/Todo", headers: "*", methods: "get,post")]
+   
     [ApiController]
     [Route("[controller]")]
     public class TodoController : Controller
@@ -38,11 +39,10 @@ namespace TodoListAPI.Controllers
 
         }
 
-        [HttpPost]
-        public void AdicionarTarefa(Tarefa tarefa)
+        [HttpPost("addtask")]
+        public void Post([FromBody] Tarefa tarefa)
         {
             _tarefaService.AdicionarTarefa(tarefa);
-
         }
     }
 }

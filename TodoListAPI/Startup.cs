@@ -36,11 +36,7 @@ namespace TodoListAPI
             });
             services.AddControllers();
 
-            services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(
-                    builder => builder.AllowAnyOrigin());
-            });
+            services.AddCors();
 
             services.AddDbContext<ApplicationContext>(options =>
             options.UseMySql(Configuration.GetConnectionString("ApplicationContext"),
@@ -54,6 +50,8 @@ namespace TodoListAPI
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            string urlOrigin = "http://localhost:3000/";
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -68,7 +66,11 @@ namespace TodoListAPI
 
             app.UseRouting();
 
-            app.UseCors();
+            app.UseCors(opt => {
+                opt.WithOrigins(urlOrigin);
+                opt.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+               
+                });
 
             app.UseAuthorization();
             
