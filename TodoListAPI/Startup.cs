@@ -32,7 +32,7 @@ namespace TodoListAPI
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Meu Swagger", Version = "v1" });
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Swagger TODO React + .NET", Version = "v1" });
             });
             services.AddControllers();
 
